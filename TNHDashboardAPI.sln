@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNHDashboardAPI", "TNHDashboardAPI.csproj", "{0F2F9EE7-7F0F-48D6-A153-0210795D21C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F2F9EE7-7F0F-48D6-A153-0210795D21C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2F9EE7-7F0F-48D6-A153-0210795D21C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2F9EE7-7F0F-48D6-A153-0210795D21C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2F9EE7-7F0F-48D6-A153-0210795D21C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EFFCDE4-85A9-4648-BDEE-109AC54F3AFF}
+	EndGlobalSection
+EndGlobal
