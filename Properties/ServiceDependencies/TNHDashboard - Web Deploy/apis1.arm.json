@@ -103,9 +103,9 @@
               "properties": {
                 "displayName": "TNHDashboardAPI",
                 "apiRevision": "1",
-                "description": "",
-                "subscriptionRequired": true,
-                "serviceUrl": null,
+                "description": null,
+                "subscriptionRequired": false,
+                "serviceUrl": "https://tnhdashboard.azurewebsites.net:80/",
                 "path": "v1",
                 "protocols": [
                   "https"

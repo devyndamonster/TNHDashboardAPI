@@ -1,14 +1,15 @@
 {
   "dependencies": {
-    "apis1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/tnh-dashboard/apis/tnhdashboardapi",
-      "type": "apis.azure"
-    },
     "mssql1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/tnh-dashboard/databases/dashboard-db",
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:TNHDashboardAPIContext",
       "secretStore": "AzureAppSettings"
+    },
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/tnh-dashboard/apis/tnhdashboardapi",
+      "type": "apis.azure",
+      "apiEndpoint": "https://tnh-dashboard.azure-api.net/v1"
     }
   }
 }

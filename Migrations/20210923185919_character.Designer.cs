@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TNHDashboardAPI.Data;
 
 namespace TNHDashboardAPI.Migrations
 {
     [DbContext(typeof(TNHDashboardAPIContext))]
-    partial class TNHDashboardAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20210923185919_character")]
+    partial class character
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

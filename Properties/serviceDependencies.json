@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "apis1": {
-      "type": "apis"
-    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:TNHDashboardAPIContext"
+    },
+    "apis1": {
+      "type": "apis"
     }
   }
 }

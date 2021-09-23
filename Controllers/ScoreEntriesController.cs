@@ -31,11 +31,12 @@ namespace TNHDashboardAPI.Controllers
 
         // GET: api/scores
         [HttpGet]
-        public ActionResult GetScores([FromQuery]string map, [FromQuery]string health, [FromQuery]string equipment, [FromQuery]string length, [FromQuery]int startingIndex, [FromQuery]int count)
+        public ActionResult GetScores([FromQuery] string character, [FromQuery]string map, [FromQuery]string health, [FromQuery]string equipment, [FromQuery]string length, [FromQuery]int startingIndex, [FromQuery]int count)
         {
             try
             {
                 var scores = from s in _context.ScoreEntry
+                             where s.Character.Equals(character)
                              where s.Map.Equals(map)
                              where s.HealthMode.Equals(health)
                              where s.EquipmentMode.Equals(equipment)
@@ -59,11 +60,12 @@ namespace TNHDashboardAPI.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult SearchScores([FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length, [FromQuery] string name)
+        public ActionResult SearchScores([FromQuery] string character, [FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length, [FromQuery] string name)
         {
             try
             {
                 var scores = from s in _context.ScoreEntry
+                             where s.Character.Equals(character)
                              where s.Map.Equals(map)
                              where s.HealthMode.Equals(health)
                              where s.EquipmentMode.Equals(equipment)
@@ -79,14 +81,14 @@ namespace TNHDashboardAPI.Controllers
             }
         }
 
-
         // GET: api/scores/count
         [HttpGet("count")]
-        public ActionResult GetNumScores([FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length)
+        public ActionResult GetNumScores([FromQuery] string character, [FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length)
         {
             try
             {
                 var scores = from s in _context.ScoreEntry
+                             where s.Character.Equals(character)
                              where s.Map.Equals(map)
                              where s.HealthMode.Equals(health)
                              where s.EquipmentMode.Equals(equipment)
@@ -127,13 +129,14 @@ namespace TNHDashboardAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPut]
-        public ActionResult UpdateScore([Bind("Id,Name,Score,Map,HealthMode,EquipmentMode,GameLength")] ScoreEntry scoreEntry)
+        public ActionResult UpdateScore([Bind("Id,Name,Score,Character,Map,HealthMode,EquipmentMode,GameLength")] ScoreEntry scoreEntry)
         {
             try
             {
                 //Gets the score that matches the sent score
                 var scores = from s in _context.ScoreEntry
                              where s.Name.Equals(scoreEntry.Name)
+                             where s.Character.Equals(scoreEntry.Character)
                              where s.Map.Equals(scoreEntry.Map)
                              where s.HealthMode.Equals(scoreEntry.HealthMode)
                              where s.EquipmentMode.Equals(scoreEntry.EquipmentMode)
