@@ -14,7 +14,7 @@ namespace TNHDashboardAPI.Utilities
         public static List<ScoreEntry> GenerateRandomScoreEntries(int count)
         {
             string[] character = { "Beginner Blake", "Classic Loadout Louis", "Onsite Procurement Patrice", "Ricky Dicky Random", "Operator Ori", "Soldier Of Fortune Franky", "Grumbly GI Grayson", "Cowweiner Calico", "Welldone Freemeat", "Zeke Zombie Hunter", "Flaccid Steak" };
-            string[] maps = { "Default", "Winter Wasteland" };
+            string[] maps = { "Classic", "NorthestDakota" };
             string[] equipment_modes = { "Limited", "Spawnlock" };
             string[] game_lengths = { "5-Hold", "3-Hold", "Endless" };
             string[] health_modes = { "Standard", "One-Hit" };

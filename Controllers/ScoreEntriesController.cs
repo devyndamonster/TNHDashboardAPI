@@ -145,14 +145,19 @@ namespace TNHDashboardAPI.Controllers
 
                 if (scores.Count() == 0)
                 {
-                    _context.Add(scoreEntry);
+                    _context.ScoreEntry.Add(scoreEntry);
                 }
 
                 else
                 {
                     ScoreEntry entry = scores.First();
 
+                    //If the score has not increased, don't edit the entry
+                    if (entry.Score >= scoreEntry.Score) return NoContent();
+
                     entry.Score = scoreEntry.Score;
+                    entry.HoldActions = scoreEntry.HoldActions;
+                    entry.HoldStats = scoreEntry.HoldStats;
 
                     _context.Entry(entry).State = EntityState.Modified;
                 }

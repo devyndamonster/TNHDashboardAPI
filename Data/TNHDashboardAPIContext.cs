@@ -13,6 +13,7 @@ namespace TNHDashboardAPI.Data
         {
         }
 
-        public DbSet<TNHDashboardAPI.Models.ScoreEntry> ScoreEntry { get; set; }
+        public DbSet<ScoreEntry> ScoreEntry { get; set; }
+        public DbSet<MapData> MapData { get; set; }
     }
 }

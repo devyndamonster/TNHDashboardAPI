@@ -8,8 +8,7 @@
     },
     "apis1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/tnh-dashboard/apis/tnhdashboardapi",
-      "type": "apis.azure",
-      "apiEndpoint": "https://tnh-dashboard.azure-api.net/v1"
+      "type": "apis.azure"
     }
   }
 }
