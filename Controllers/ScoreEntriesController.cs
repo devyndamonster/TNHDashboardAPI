@@ -60,7 +60,7 @@ namespace TNHDashboardAPI.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult SearchScores([FromQuery] string character, [FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length, [FromQuery] string name)
+        public ActionResult SearchScores([FromQuery] string character, [FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length, [FromQuery] string name, [FromQuery] int num_before = 0, [FromQuery] int num_after = 0)
         {
             try
             {
@@ -70,10 +70,19 @@ namespace TNHDashboardAPI.Controllers
                              where s.HealthMode.Equals(health)
                              where s.EquipmentMode.Equals(equipment)
                              where s.GameLength.Equals(length)
-                             where s.Name.Equals(name)
+                             orderby s.Score descending
                              select s;
 
-                return Ok(scores);
+                List<ScoreEntry> scoreList = scores.ToList();
+                int scoreIndex = scoreList.FindIndex(o => o.Name == name);
+
+                //If the index is negative, we could not find the desired score in this selection
+                if (scoreIndex < 0) return Ok(scoreList);
+
+                num_before = Math.Min(num_before, scoreIndex);
+
+                //Now we take the desired scores around the searched score
+                return Ok(scoreList.Skip(scoreIndex - num_before).Take(num_before + num_after + 1));
             }
             catch (Exception e)
             {
