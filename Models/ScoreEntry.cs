@@ -19,5 +19,8 @@ namespace TNHDashboardAPI.Models
         public string GameLength { get; set; }
         public string HoldActions { get; set; }
         public string HoldStats { get; set; }
+
+        [NotMapped]
+        public int Rank { get; set; }
     }
 }

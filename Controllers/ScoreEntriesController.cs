@@ -46,10 +46,17 @@ namespace TNHDashboardAPI.Controllers
 
                 if (scores.Count() == 0)
                 {
-                    return Ok(scores.ToList());
+                    return Ok(scores);
                 }
 
                 List<ScoreEntry> selectedScores = scores.Skip(startingIndex).Take(count).ToList();
+
+                int rank = startingIndex;
+                selectedScores.ForEach(o =>
+                {
+                    o.Rank = rank;
+                    rank += 1;
+                });
 
                 return Ok(selectedScores);
             }
@@ -73,16 +80,27 @@ namespace TNHDashboardAPI.Controllers
                              orderby s.Score descending
                              select s;
 
+                //First, get index of the person we're searching for
                 List<ScoreEntry> scoreList = scores.ToList();
                 int scoreIndex = scoreList.FindIndex(o => o.Name == name);
 
                 //If the index is negative, we could not find the desired score in this selection
                 if (scoreIndex < 0) return Ok(scoreList);
 
+                //Now we want this list to only contain the selected number of scores
                 num_before = Math.Min(num_before, scoreIndex);
+                scoreList = scoreList.Skip(scoreIndex - num_before).Take(num_before + num_after + 1).ToList();
 
-                //Now we take the desired scores around the searched score
-                return Ok(scoreList.Skip(scoreIndex - num_before).Take(num_before + num_after + 1));
+                //Go through the list and apply rankings
+                int rank = scoreIndex - num_before;
+                scoreList.ForEach(o =>
+                {
+                    o.Rank = rank;
+                    rank += 1;
+                });
+                
+                //Now we take the desired scores
+                return Ok(scoreList);
             }
             catch (Exception e)
             {
@@ -138,7 +156,7 @@ namespace TNHDashboardAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPut]
-        public ActionResult UpdateScore([Bind("Id,Name,Score,Character,Map,HealthMode,EquipmentMode,GameLength")] ScoreEntry scoreEntry)
+        public ActionResult UpdateScore([Bind("Id,Name,Score,Character,Map,HealthMode,EquipmentMode,GameLength,Rank")] ScoreEntry scoreEntry)
         {
             try
             {
