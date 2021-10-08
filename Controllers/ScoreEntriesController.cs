@@ -85,7 +85,7 @@ namespace TNHDashboardAPI.Controllers
                 int scoreIndex = scoreList.FindIndex(o => o.Name == name);
 
                 //If the index is negative, we could not find the desired score in this selection
-                if (scoreIndex < 0) return Ok(scoreList);
+                if (scoreIndex < 0) return NotFound();
 
                 //Now we want this list to only contain the selected number of scores
                 num_before = Math.Min(num_before, scoreIndex);
