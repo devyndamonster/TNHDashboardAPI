@@ -29,6 +29,7 @@ namespace TNHDashboardAPI.Controllers
             return Ok("Pong");
         }
 
+
         // GET: api/scores
         [HttpGet]
         public ActionResult GetScores([FromQuery] string character, [FromQuery]string map, [FromQuery]string health, [FromQuery]string equipment, [FromQuery]string length, [FromQuery]int startingIndex, [FromQuery]int count)
@@ -65,6 +66,9 @@ namespace TNHDashboardAPI.Controllers
                 return Problem("Something bad happened: " + e.ToString());
             }
         }
+
+
+
 
         [HttpGet("search")]
         public ActionResult SearchScores([FromQuery] string character, [FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length, [FromQuery] string name, [FromQuery] int num_before = 0, [FromQuery] int num_after = 0)
@@ -108,6 +112,8 @@ namespace TNHDashboardAPI.Controllers
             }
         }
 
+
+
         // GET: api/scores/count
         [HttpGet("count")]
         public ActionResult GetNumScores([FromQuery] string character, [FromQuery] string map, [FromQuery] string health, [FromQuery] string equipment, [FromQuery] string length)
@@ -131,6 +137,7 @@ namespace TNHDashboardAPI.Controllers
         }
 
 
+
         [HttpGet("take")]
         public ActionResult GetScores([FromQuery] int count)
         {
@@ -152,9 +159,8 @@ namespace TNHDashboardAPI.Controllers
         }
 
 
-        // POST: ScoreEntries/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPut]
         public ActionResult UpdateScore([Bind("Id,Name,Score,Character,Map,HealthMode,EquipmentMode,GameLength,Rank")] ScoreEntry scoreEntry)
         {

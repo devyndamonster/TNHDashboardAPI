@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TNHDashboardAPI.Data;
 using TNHDashboardAPI.Models;
 
 namespace TNHDashboardAPI.Utilities
@@ -13,11 +14,7 @@ namespace TNHDashboardAPI.Utilities
 
         public static List<ScoreEntry> GenerateRandomScoreEntries(int count)
         {
-            string[] character = { "Beginner Blake", "Classic Loadout Louis", "Onsite Procurement Patrice", "Ricky Dicky Random", "Operator Ori", "Soldier Of Fortune Franky", "Grumbly GI Grayson", "Cowweiner Calico", "Welldone Freemeat", "Zeke Zombie Hunter", "Flaccid Steak" };
-            string[] maps = { "Classic", "NorthestDakota" };
-            string[] equipment_modes = { "Limited", "Spawnlock" };
-            string[] game_lengths = { "5-Hold", "3-Hold", "Endless" };
-            string[] health_modes = { "Standard", "One-Hit" };
+            
             string[] weapons = { "AKM", "Makarov", "1911", "M16", "Stoner 63", "PPBizon", "P90", "AWM", "P250" };
 
             var randomActions = new Faker<List<List<string>>>()
@@ -64,11 +61,11 @@ namespace TNHDashboardAPI.Utilities
             var randomScores = new Faker<ScoreEntry>()
                 .RuleFor(s => s.Name, f => f.Name.FirstName())
                 .RuleFor(s => s.Score, f => f.Random.Number(1000000, 9999990))
-                .RuleFor(s => s.Character, f => f.PickRandom(character))
-                .RuleFor(s => s.Map, f => f.PickRandom(maps))
-                .RuleFor(s => s.EquipmentMode, f => f.PickRandom(equipment_modes))
-                .RuleFor(s => s.GameLength, f => f.PickRandom(game_lengths))
-                .RuleFor(s => s.HealthMode, f => f.PickRandom(health_modes))
+                .RuleFor(s => s.Character, f => f.PickRandom(VanillaSelectionOptions.Character))
+                .RuleFor(s => s.Map, f => f.PickRandom(VanillaSelectionOptions.Maps))
+                .RuleFor(s => s.EquipmentMode, f => f.PickRandom(VanillaSelectionOptions.EquipmentModes))
+                .RuleFor(s => s.GameLength, f => f.PickRandom(VanillaSelectionOptions.GameLengths))
+                .RuleFor(s => s.HealthMode, f => f.PickRandom(VanillaSelectionOptions.HealthModes))
                 .FinishWith((f,s) =>
                 {
                     List<List<string>> actions = randomActions.Generate();
